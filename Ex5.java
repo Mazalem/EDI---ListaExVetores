@@ -1,33 +1,35 @@
-import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class Ex5 {
     public static void main(String[] args) {
-        int[] vetor = {5, 3, 8, 1, 2};
-        imprimeOrdenado(vetor);
+        int[] vetor = {23, 45, 12, 78, 34, 67, 89, 10, 56, 90};
+        try{
+            imprimeOrdenado(vetor);
+        }catch(NoSuchElementException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
     public static void imprimeOrdenado(int[] desordenado) {
-        int posicaoMaior = 0;
-        int maiorValor = desordenado[posicaoMaior];
-        for(int i = 0; i < desordenado.length; i++)
-            if(maiorValor < desordenado[i]){
-                posicaoMaior = i;
-                maiorValor = desordenado[i];
-            }
-
-        int menor;
-        int anterior = posicaoMaior;
-        ArrayList<Integer> anteriores = new ArrayList<>();
+        if(desordenado[0] == 0) {
+            throw new NoSuchElementException("O vetor não pode ser vazio.");
+        }
+        int menor = desordenado[0], posMaior = 0, anterior = 0;
 
         for(int i = 0; i < desordenado.length; i++) {
-            menor = maiorValor;
-            for (int j = 0; j < desordenado.length; j++) {
-                if(menor > desordenado[j] && !anteriores.contains(j)) {
+            if(menor < desordenado[i]){
+                posMaior = i;
+            }
+        }
+
+        for(int i = 0; i < desordenado.length; i++) {
+            menor = desordenado[posMaior];
+            for(int j = 0; j < desordenado.length; j++) {
+                if(desordenado[j] > anterior && desordenado[j] < menor) {
                     menor = desordenado[j];
-                    anterior = j;
                 }
             }
-            anteriores.add(anterior);
+            anterior = menor;
             System.out.print(menor + " ");
         }
     }

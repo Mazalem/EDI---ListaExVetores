@@ -1,5 +1,4 @@
 import java.util.Random;
-
 public class Ex6 {
     public static void main(String[] args) {
         int[] vetor1 = {5,3,9,8,1};
@@ -19,13 +18,14 @@ public class Ex6 {
         int[] vetor3 = new int[vetor1.length];
         Random random = new Random();
         int aleatorio;
+        int ultimoPar = 0, ultimoImpar = 0;
         for(int i = 0; i < vetor1.length; i++) {
             aleatorio = random.nextInt();
             if(aleatorio % 2 == 0) {
-                vetor3[i] = vetor1[i];
+                vetor3[i] = vetor1[ultimoPar++];
             }
             else {
-                vetor3[i] = vetor2[i];
+                vetor3[i] = vetor2[ultimoImpar++];
             }
         }
         return vetor3;

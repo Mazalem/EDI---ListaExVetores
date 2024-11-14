@@ -1,16 +1,18 @@
 import java.util.Random;
-
 public class Ex1 {
     public static void main(String[] args) {
         int[] vetor = geraVetor();
+        System.out.print("Vetor original:");
         exibeVetor(vetor);
         vetor = apagaPares(vetor);
+        System.out.print("Vetor de ímpares:");
         exibeVetor(vetor);
     }
 
     public static void exibeVetor(int[] vetor) {
         for(int i = 0; i < vetor.length; i++) {
-            System.out.print(vetor[i] + " ");
+            if(vetor[i] != 0)
+                System.out.print(vetor[i] + " ");
         }
         System.out.println("\n");
     }
